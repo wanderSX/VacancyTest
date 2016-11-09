@@ -21,31 +21,31 @@ function handleRequest(request, response){
 dispatcher.setStatic('resources');
 
 //A sample GET request    
-dispatcher.onGet("/page1", function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Page One');
-});    
+
 
 //A sample POST request
-dispatcher.onPost("/post1", function(req, res) {
-
-		if(req.body)
+dispatcher.onPost("/login", function(req, res) {
+		
+		setTimeout(() => {
+			if(req.body)
 		{
-			
+			console.log(req.body);
 			var data = JSON.parse(req.body);
 
-			if(data.Username === "foo" && data.Password === "bar") {
-				res.writeHead(200, {'Content-Type': 'application/json'});
-	    	res.end(JSON.stringify({ Auth: "Denied" }));
-			}
-			if(data.Username === "User" && data.Password === "Password") {
-				res.writeHead(200, {'Content-Type': 'application/json'});
-	    	res.end(JSON.stringify({ Auth: "Logged", Language: "EN" }));
-			}
+			res.writeHead(200, {
+					'Content-Type': 'application/json',
+					'Access-Control-Allow-Origin': '*'
+				});
 			
+			if(data.username === "User" && data.password === "Password") {
+	    	res.end(JSON.stringify({ Auth: "Logged", Language: "EN" }));
+			} else {
+				res.end(JSON.stringify({ Auth: "Denied" }));
+			}
+
 		}
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Page Two');
+		},3000);
+		
 });
 
 //Create a server

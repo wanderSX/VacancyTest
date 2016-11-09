@@ -3,3 +3,44 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.container{
+	width: 200px !important ;
+}
+
+.login-heading{
+	margin-bottom: 30px;
+}
+
+.form-group{
+	margin-bottom: 20px !important;
+}
+
+.form-group .btn-default{
+	color: #428BCA;
+	width: 100px;
+	height: 34px;
+	border-radius: 20px;
+	padding: 0;
+}
+
+.form-control{
+  letter-spacing: .11em;
+  font-size: .7em;
+  padding-left: 6px;
+  padding-bottom: 2px;
+  padding-top: 10px;
+}
+
+.has-danger .form-control{
+	border-color: #ff9999;
+	border-width: 3px;
+}
+
+.green{
+	color: LimeGreen;
+}
+
+.gold{
+	color: Orange;
+}

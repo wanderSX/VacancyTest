@@ -1,32 +1,78 @@
 import React, {Component} from 'react';
-import { login } from '../actions/index.js';
+import { tryLogin } from '../actions/index.js';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 class LoginForm extends Component{
 
+	constructor(props){
+		super(props);
+
+		this.state = {
+			username: '',
+			password: '',
+			processing: false 
+		}
+	}
+
 onFormSumbit(event) {
 		event.preventDefault();
-		console.log(event);
+		
+		if(this.state.username && this.state.password) {
+			this.setState({ processing: true })
+
+			this.props.tryLogin(this.state)
+				.then(() => {
+					this.setState({ processing: false });
+				});
+		}
 }
 
 	render(){
+
+		const LoginButton = (
+				<button type="submit" className="btn btn-default center-block">Login &rarr;</button>
+		);
+	
+
+		const ProcessingButton = (
+				<button type="submit" className="btn btn-default center-block disabled">
+					<span className="glyphicon glyphicon-cog"></span>
+				</button>
+		);
+		
+
+		if(this.props.auth === "Logged"){
+			return (<h3 className="text-center">
+								<span className="glyphicon glyphicon-ok green" /> Succesful logged
+						 </h3>
+			);
+		}
+
 		return(
-			<div className="container1 center-block">
+			<div className="container center-block">
 					<h3 className="text-center login-heading">
 						<span className="glyphicon glyphicon-fire gold"></span> Login
 					</h3>
-					<form onSubmit={this.onFormSumbit} className="form-horizontal ">
-						<div className="form-group">
-							<input type="text" className="form-control" placeholder="Login"/>
+					<form onSubmit={this.onFormSumbit.bind(this)} className="form-horizontal ">
+						<div className={`form-group ${this.props.auth === "Denied" ? 'has-danger' : ''}`}>
+							<input 
+								value={this.state.username}
+								onChange={(e) => this.setState({ username: e.target.value})}
+								type="text" 
+								className="form-control" 
+								placeholder="Login"/>
 						</div>
 						<div className="form-group">
-							<input type="password" className="form-control" placeholder="Password"/>
+							<input 
+								value={this.state.password}
+								onChange={(e) => this.setState({ password: e.target.value})}
+								type="password" 
+								className="form-control"
+								placeholder="Password"/>
 						</div>
 						<div className="form-group">
-							<button type="submit" className="btn btn-default center-block">Login &rarr;
-								<span className="fa fa-long-arrow-right"></span>
-							</button>
+							{this.state.processing === true ? ProcessingButton : LoginButton}
 						</div>
 					</form>	
 			</div>
@@ -34,12 +80,12 @@ onFormSumbit(event) {
 	}
 }
 
-function mapStateToProps(auth){
+function mapStateToProps({auth}){
 	return { auth };
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({ login }, dispatch);
+	return bindActionCreators({ tryLogin }, dispatch);
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(LoginForm);

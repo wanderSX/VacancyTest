@@ -1,13 +1,15 @@
 import axios from 'axios';
 
-const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT';
+export const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT';
+const ROOT_URL = 'http://localhost:8080'
 
-
-export function login(props){
-	const request = axios.post(`http://localhost:8080/login`, props);
+export function tryLogin(props){
+	
+	const request = axios.post(`${ROOT_URL}/login`, JSON.stringify(props));
 
 	return {
 		type: LOGIN_ATTEMPT,
 		payload: request
 	};
+
 }
