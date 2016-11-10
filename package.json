@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "mockserver-client": "^1.0.12",
-    "mockserver-grunt": "^1.0.33",
     "react-scripts": "0.7.0"
   },
   "dependencies": {
