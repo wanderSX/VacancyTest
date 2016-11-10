@@ -52,7 +52,7 @@ onFormSumbit(event) {
 		return(
 			<div className="container center-block">
 					<h3 className="text-center login-heading">
-						<span className="glyphicon glyphicon-fire gold"></span> Login
+						<span className="glyphicon glyphicon-fire gold centered"></span> Login
 					</h3>
 					<form onSubmit={this.onFormSumbit.bind(this)} className="form-horizontal ">
 						<div className={`form-group ${this.props.auth === "Denied" ? 'has-danger' : ''}`}>

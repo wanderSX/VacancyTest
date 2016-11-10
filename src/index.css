@@ -9,7 +9,22 @@ body {
 }
 
 .login-heading{
+	vertical-align: middle;
 	margin-bottom: 30px;
+	position: relative;
+}
+
+.login-heading .centered{
+	vertical-align: middle;
+}
+
+
+.login-heading span.glyphicon{
+	position: absolute;
+	left:10px;
+	top:-5px;
+	font-size:38px;
+	vertical-align: middle;
 }
 
 .form-group{
@@ -43,4 +58,9 @@ body {
 
 .gold{
 	color: Orange;
+}
+
+.glyphicon.glyphicon-cog{
+	font-size:28px;
+	vertical-align: middle;
 }
