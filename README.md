@@ -1,4 +1,4 @@
-# VanancyTest
+# VacancyTest
 Vacancy test for Geeks.Team
 
 ```npm install``` to install dependencies
